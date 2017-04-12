@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Facilities</string>
+    <string name="title_activity_button_start">Facilities</string>
+    <string name="title_activity_building_list">Facilities</string>
+    <string name="Warning">WARNING: Some buildings may not have up to date statistics.</string>
+    <string name="current_building_sensor_data">Current Building Sensor Data</string>
+</resources>
