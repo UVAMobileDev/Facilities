@@ -32,6 +32,7 @@ public class BuildingSensorActivity extends AppCompatActivity {
 
     //declare variables
     private String newString;
+    private static final String API_KEY = BuildConfig.API_KEY;
     private String jsonResponse;
     ArrayList<String> values = new ArrayList<String>();
     private ListView mainListView ;
@@ -67,7 +68,7 @@ public class BuildingSensorActivity extends AppCompatActivity {
         }
 
         //api url
-        String url = "http://138.197.11.189:3000/api/sensors/" + hold;
+        String url = "http://138.197.11.189:3000/api/"+ API_KEY +"/sensors/" + hold;
         RequestQueue queue = Volley.newRequestQueue(this);
         //create json array request
         JsonArrayRequest req = new JsonArrayRequest(url,

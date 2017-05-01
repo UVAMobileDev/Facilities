@@ -30,7 +30,7 @@
              />
         <activity android:name=".GraphListActivity" />
         <activity
-            android:name=".WeelyGraphActivity"
+            android:name=".WeeklyGraphActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MonthlyGraphActivity"

@@ -1,24 +1,18 @@
 package nadim.facilities;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,14 +37,13 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
-import static android.R.attr.entries;
-
 /**
  * Activity to create Weekly Chart data for demand
  */
-public class WeelyGraphActivity extends AppCompatActivity {
+public class WeeklyGraphActivity extends AppCompatActivity {
 
     //declare variables
+    private static final String API_KEY = BuildConfig.API_KEY;
     private String nameString;
     private String typeString;
     private String jsonResponse;
@@ -62,7 +55,7 @@ public class WeelyGraphActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weely_graph);
+        setContentView(R.layout.activity_weekly_graph);
 
         //save variables for name and type from previous activities
         if (savedInstanceState == null) {
@@ -94,7 +87,7 @@ public class WeelyGraphActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //create api call
-        String url = "http://138.197.11.189:3000/api/sensors/" + holdName + "/" + holdType + "/monthly?date=" + date;
+        String url = "http://138.197.11.189:3000/api/"+ API_KEY +"/sensors/" + holdName + "/" + holdType + "/monthly?date=" + date;
 
         RequestQueue queue = Volley.newRequestQueue(this);
         //make json array request

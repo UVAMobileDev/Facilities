@@ -2,12 +2,10 @@ package nadim.facilities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
@@ -27,9 +25,7 @@ import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -44,6 +40,7 @@ import java.util.TreeMap;
 public class MonthlyGraphActivity extends AppCompatActivity {
 
     //declare variables
+    private static final String API_KEY = BuildConfig.API_KEY;
     private String nameString;
     private String typeString;
     private String jsonResponse;
@@ -55,7 +52,7 @@ public class MonthlyGraphActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weely_graph);
+        setContentView(R.layout.activity_weekly_graph);
 
         //save variables for name and type passed from previous activities
         if (savedInstanceState == null) {
@@ -87,7 +84,7 @@ public class MonthlyGraphActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         //create api call
-        String url = "http://138.197.11.189:3000/api/sensors/" + holdName + "/" + holdType + "/monthly?date=" + date;
+        String url = "http://138.197.11.189:3000/api/"+ API_KEY +"/sensors/" + holdName + "/" + holdType + "/monthly?date=" + date;
 
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest req = new JsonArrayRequest(url,

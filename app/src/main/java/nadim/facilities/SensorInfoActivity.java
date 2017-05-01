@@ -38,6 +38,7 @@ import java.util.TimeZone;
 public class SensorInfoActivity extends AppCompatActivity {
 
     //declare variables
+    private static final String API_KEY = BuildConfig.API_KEY;
     private String nameString;
     private String typeString;
     private String jsonResponse;
@@ -79,7 +80,7 @@ public class SensorInfoActivity extends AppCompatActivity {
         }
 
         //create api call
-        String url = "http://138.197.11.189:3000/api/sensors/" + holdName + "/" + holdType + "/daily?date=" + date;
+        String url = "http://138.197.11.189:3000/api/"+ API_KEY +"/sensors/" + holdName + "/" + holdType + "/daily?date=" + date;
 
         RequestQueue queue = Volley.newRequestQueue(this);
         //get array request info

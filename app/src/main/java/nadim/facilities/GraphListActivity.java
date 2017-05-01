@@ -67,7 +67,7 @@ public class GraphListActivity extends AppCompatActivity {
                         break;
                     //if 1 go to weekly data activity
                     case 1:
-                        Intent intent2 = new Intent(GraphListActivity.this, WeelyGraphActivity.class);
+                        Intent intent2 = new Intent(GraphListActivity.this, WeeklyGraphActivity.class);
                         intent2.putExtra("Type", typeString);
                         intent2.putExtra("Name", nameString);
                         startActivity(intent2);

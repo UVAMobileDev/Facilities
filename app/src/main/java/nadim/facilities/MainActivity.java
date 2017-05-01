@@ -9,9 +9,11 @@
     import android.widget.ArrayAdapter;
     import android.widget.ListView;
 
+    import com.android.volley.DefaultRetryPolicy;
     import com.android.volley.Request;
     import com.android.volley.RequestQueue;
     import com.android.volley.Response;
+    import com.android.volley.RetryPolicy;
     import com.android.volley.VolleyError;
     import com.android.volley.VolleyLog;
     import com.android.volley.toolbox.JsonArrayRequest;
@@ -33,6 +35,7 @@
     public class MainActivity extends AppCompatActivity {
 
         //declare variables to be used later
+        private static final String API_KEY = BuildConfig.API_KEY;
         private ListView mainListView ;
         private ArrayAdapter<String> listAdapter ;
         ArrayList<String> values = new ArrayList<String>();
@@ -51,7 +54,7 @@
             //set the list adaper
             listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, values);
             //create the api call, this will give all the sensors available
-            String url = "http://138.197.11.189:3000/api/sensors";
+            String url = "http://138.197.11.189:3000/api/" + API_KEY + "/sensors";
 
             // Instantiate the RequestQueue.
             JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -95,9 +98,16 @@
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Log.d("MAINACT", error.toString());
                 }
             });
             //!Important, must add request to queue or API will not be called
+            int socketTimeout = 30000; // Loading data, prevent auto-timeout
+            RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+            req.setRetryPolicy(policy);
             queue.add(req);
         }
 
